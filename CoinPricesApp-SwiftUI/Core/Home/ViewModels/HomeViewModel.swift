@@ -18,12 +18,31 @@ class HomeViewModel: ObservableObject {
         
         let (data, response) = try await URLSession.shared.data(for: request)
         
-        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error fetching weather data")}
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error fetching coin data")}
         
         let decodedData = try JSONDecoder().decode(Coin.self, from: data)
         
         return decodedData
         
+    }
+    
+    
+    func fetchTopCoinsData() async throws -> [Coins]? {
+        let urlString = "https://api.coingecko.com/api/v3/search/trending"
+        
+        guard let url = URL(string: urlString) else { fatalError("Missing URL") }
+        
+        let request = URLRequest(url: url)
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard (response as? HTTPURLResponse)?.statusCode == 200 else { fatalError("Error fetching top coins data") }
+        
+        let decodedData = try JSONDecoder().decode(TopCoins.self, from: data)
+        
+        print(decodedData)
+        
+        return decodedData.coins
     }
     
     

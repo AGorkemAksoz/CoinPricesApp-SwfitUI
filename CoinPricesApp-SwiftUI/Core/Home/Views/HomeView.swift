@@ -10,12 +10,13 @@ import SwiftUI
 struct HomeView: View {
     @StateObject var homeViewModel = HomeViewModel()
     @State var coin: Coin
+    @State var topCoins: [Coins]
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
                 
                 // Top Movers View
-                TopMovesView()
+                TopMovesView(coin: topCoins)
                 
                 Divider()
                 
@@ -26,7 +27,8 @@ struct HomeView: View {
         }
         .task {
             do {
-               coin =  try await homeViewModel.fetchCoinData()
+                coin =  try await homeViewModel.fetchCoinData()
+                topCoins = try await homeViewModel.fetchTopCoinsData()!
             } catch {
                 print("Error: \(error.localizedDescription)")
             }
@@ -36,6 +38,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView(coin: dummyCoin)
+        HomeView(coin: dummyCoin, topCoins: dummyTopCoinsData)
     }
 }

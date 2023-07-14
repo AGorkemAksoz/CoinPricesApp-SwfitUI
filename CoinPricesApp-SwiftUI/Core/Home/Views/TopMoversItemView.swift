@@ -8,30 +8,37 @@
 import SwiftUI
 
 struct TopMoversItemView: View {
+    var coin: Item
     var body: some View {
         VStack(alignment: .leading) {
             //image
-            Image(systemName: "bitcoinsign.circle.fill")
-                .resizable()
-                .frame(width: 32, height: 32)
-                .foregroundColor(.orange)
-                .padding(.bottom, 8)
+            
+            AsyncImage(url: URL(string: coin.small ?? "")) { image in
+                image
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(.orange)
+                    .padding(.bottom, 8)
+            } placeholder: {
+                ProgressView()
+            }
+
             
             //coin info
             
             HStack(spacing: 2) {
-                Text("BTC")
+                Text(coin.symbol ?? "")
                     .font(.caption)
                     .fontWeight(.bold)
                 
-                Text("$20,330.00")
+                Text(String(coin.priceBtc ?? 31))
                     .font(.caption)
                     .foregroundColor(.gray)
             }
             
             // coin percent change
             
-            Text("+5.60%")
+            Text(String(coin.marketCapRank ?? 32))
                 .font(.title2)
                 .foregroundColor(.green)
         }
@@ -45,6 +52,6 @@ struct TopMoversItemView: View {
 
 struct TopMoversItemView_Previews: PreviewProvider {
     static var previews: some View {
-        TopMoversItemView()
+        TopMoversItemView(coin: dummyTopCoinsData[0].item!)
     }
 }

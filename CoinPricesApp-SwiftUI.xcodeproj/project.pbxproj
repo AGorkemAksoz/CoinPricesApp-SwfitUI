@@ -18,6 +18,7 @@
 		DE2AF3402A60341300B7A1AB /* CoinRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE2AF33F2A60341300B7A1AB /* CoinRowView.swift */; };
 		DEE798562A603CDE009F817B /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE798552A603CDE009F817B /* HomeViewModel.swift */; };
 		DEE798582A612F45009F817B /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE798572A612F45009F817B /* Coin.swift */; };
+		DEE7985A2A613FAA009F817B /* TopCoins.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEE798592A613FAA009F817B /* TopCoins.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		DE2AF33F2A60341300B7A1AB /* CoinRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinRowView.swift; sourceTree = "<group>"; };
 		DEE798552A603CDE009F817B /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		DEE798572A612F45009F817B /* Coin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
+		DEE798592A613FAA009F817B /* TopCoins.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopCoins.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				DEE798572A612F45009F817B /* Coin.swift */,
+				DEE798592A613FAA009F817B /* TopCoins.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				DE2AF31B2A60212500B7A1AB /* ContentView.swift in Sources */,
 				DEE798562A603CDE009F817B /* HomeViewModel.swift in Sources */,
 				DE2AF3192A60212500B7A1AB /* CoinPricesApp_SwiftUIApp.swift in Sources */,
+				DEE7985A2A613FAA009F817B /* TopCoins.swift in Sources */,
 				DE2AF33C2A602CAA00B7A1AB /* TopMovesView.swift in Sources */,
 				DE2AF3402A60341300B7A1AB /* CoinRowView.swift in Sources */,
 				DE2AF33A2A602C9B00B7A1AB /* TopMoversItemView.swift in Sources */,
