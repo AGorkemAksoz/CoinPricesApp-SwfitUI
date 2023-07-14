@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CoinRowView: View {
+    var coin: CoinElement
     var body: some View {
         HStack {
             // market cap rank
@@ -15,20 +16,26 @@ struct CoinRowView: View {
                 .font(.caption)
                 .foregroundColor(.gray)
             // image
-            Image(systemName: "bitcoinsign.circle.fill")
-                .resizable()
-                .scaledToFit()
-                .frame(width: 32, height: 32)
-                .foregroundColor(.orange)
+            AsyncImage(url: URL(string: coin.image!)) { image in
+                image
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 32, height: 32)
+                    .foregroundColor(.orange)
+            } placeholder: {
+                ProgressView()
+            }
+
+                
             // coin name info
             
             VStack(alignment: .leading, spacing: 4) {
-                 Text("Bitcoin")
+                Text(coin.name ?? "")
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .padding(.leading, 4)
                     
-                Text("BTC")
+                Text(coin.symbol ?? "")
                     .font(.caption)
                     .padding(.leading, 6)
             }
@@ -39,15 +46,15 @@ struct CoinRowView: View {
             // coin price info
             
             VStack(alignment: .trailing, spacing: 4) {
-                 Text("$20,330.00")
+                Text(String("$\(coin.currentPrice ?? 31)"))
                     .font(.subheadline)
                     .fontWeight(.semibold)
                     .padding(.leading, 4)
                     
-                Text("-5.60%")
+                Text(String("%\(coin.priceChangePercentage24HInCurrency ?? 31)"))
                     .font(.caption)
                     .padding(.leading, 6)
-                    .foregroundColor(.red)
+                    .foregroundColor(coin.priceChangePercentage24HInCurrency! < 0 ? .red : .green)
             }
             .padding(.leading, 2)
         }
@@ -58,6 +65,6 @@ struct CoinRowView: View {
 
 struct CoinRowView_Previews: PreviewProvider {
     static var previews: some View {
-        CoinRowView()
+        CoinRowView(coin: dummyCoin.first!)
     }
 }

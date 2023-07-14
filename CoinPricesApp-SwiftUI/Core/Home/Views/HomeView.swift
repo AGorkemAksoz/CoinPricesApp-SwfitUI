@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @StateObject var homeViewModel = HomeViewModel()
+    @State var coin: Coin
     var body: some View {
         NavigationView {
             ScrollView(.vertical, showsIndicators: false) {
@@ -18,15 +20,22 @@ struct HomeView: View {
                 Divider()
                 
                 // All coins view
-                AllCoinsView()
+                AllCoinsView(coin: coin)
             }
             .navigationTitle("Live Prices")
+        }
+        .task {
+            do {
+               coin =  try await homeViewModel.fetchCoinData()
+            } catch {
+                print("Error: \(error.localizedDescription)")
+            }
         }
     }
 }
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(coin: dummyCoin)
     }
 }
